@@ -273,6 +273,10 @@ class RootPage extends StatelessWidget {
     var names = _pages.keys.toList();
     names.sort();
 
+    if (JsonWidgetRegistry.instance.disableValidation) {
+      names.insert(0, 'slow warning ... schema validation is enabled which makes things easier to debug, but also slows things down considerably');
+    }      
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Select Widget / Page'),
@@ -281,7 +285,11 @@ class RootPage extends StatelessWidget {
         itemCount: _pages.length,
         itemBuilder: (BuildContext context, int index) => ListTile(
           title: Text(names[index]),
-          onTap: () => _pages[names[index]]!(context, names[index]),
+          onTap: () {
+            if (_pages.containsKey(names[index])) {
+              _pages[names[index]]!(context, names[index]);
+            }
+          },
         ),
       ),
     );
