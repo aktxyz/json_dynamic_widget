@@ -186,8 +186,8 @@ $map
     return listenVariables;
   }
 
-  /// Convenience method that can build the widget this data object represents.
-  /// This is the equilivant of calling: [builder.build] and padding this in as
+  /// Convenience method that can build the widget represented by this data object.
+  /// This is the equilavant of calling: [builder.build] and passing this in as
   /// the [data] parameter.
   Widget build({
     ChildWidgetBuilder? childBuilder,
@@ -224,7 +224,7 @@ $map
       );
 
   /// Recreates the data object based on the updated values and function
-  /// responces from the registry.  This should only be called within the
+  /// responses from the registry.  This should only be called within the
   /// framework itself, external code should not need to call this.
   JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
     var registry = newRegistry ?? this.registry;
